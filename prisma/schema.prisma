@@ -1,0 +1,44 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Hotel {
+  hotel_slug      String      @id @map("hotel_slug") // Set hotel_slug as the primary key
+  images          String[]
+  title           String
+  description     String
+  guestCount      Int
+  bedroomCount    Int
+  bathroomCount   Int
+  amenitiesCount  Int
+  address         String
+  longitude       Float
+  latitude        Float
+  host            Json
+  rooms           Room[]
+
+  @@map("hotels") // Optional: explicitly name the table
+}
+
+model Room {
+  room_slug       String  @id @map("room_slug") // Set room_slug as the primary key
+  hotel_slug      String // Foreign key referring to Hotel model's hotel_slug
+  roomImage       String
+  roomTitle       String
+  bedroomCount    Int
+  hotel           Hotel   @relation(fields: [hotel_slug], references: [hotel_slug])
+
+  @@map("rooms") // Optional: explicitly name the table
+}
+
