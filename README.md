@@ -31,22 +31,22 @@ A Node.js and Express.js backend for managing hotel and room data, using Postgre
 
 1. Clone the repository:
 
-- ``` https://github.com/yourusername/hotel-management-backend.git```
+-  ``` https://github.com/yourusername/hotel-management-backend.git```
 
 2. Navigate to the project directory:
 
 3. Install dependencies:
-- ```npm install```
+-  ```npm install```
 4. Set up your environment variables by creating a `.env` file in the root directory
 5. Run Prisma migrations:
-- ```npx prisma migrate dev```
+-  ```npx prisma migrate dev```
 6. Start the development server:
-- ```npm start ```
+-  ```npm start ```
 ## API Endpoints
 
-- ```POST``` `/createHotel` - Create a new hotel
-- ```POST``` `/createRoom/:hotel_slug` - Create a new room
-- ```GET``` `/hotels/:hotel_slug` - Get specific hotel with their rooms
+-  ```POST``` `/createHotel` - Create a new hotel
+-  ```POST``` `/createRoom/:hotel_slug` - Create a new room under specific hotel slug
+-  ```GET``` `/hotels/:hotel_slug` - Get specific hotel with their rooms
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
