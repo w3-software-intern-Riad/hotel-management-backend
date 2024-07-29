@@ -47,6 +47,62 @@ A Node.js and Express.js backend for managing hotel and room data, using Postgre
 -  ```POST``` `/createHotel` - Create a new hotel
 -  ```POST``` `/createRoom/:hotel_slug` - Create a new room under specific hotel slug
 -  ```GET``` `/hotels/:hotel_slug` - Get specific hotel with their rooms
+
+## Schema Overview
+
+
+### Hotel Model
+
+The `Hotel` model represents individual hotels in the system. It includes the following fields:
+
+- `hotel_slug`: String (Primary Key)
+- `images`: String[]
+- `title`: String
+- `description`: String
+- `guestCount`: Int
+- `bedroomCount`: Int
+- `bathroomCount`: Int
+- `amenitiesCount`: Int
+- `address`: String
+- `longitude`: Float
+- `latitude`: Float
+- `host`: Json
+- `rooms`: Relation to Room model
+
+### Room Model
+
+The `Room` model represents individual rooms within hotels. It includes the following fields:
+
+- `room_slug`: String (Primary Key)
+- `hotel_slug`: String (Foreign Key to Hotel model)
+- `roomImage`: String
+- `roomTitle`: String
+- `bedroomCount`: Int
+- `hotel`: Relation to Hotel model
+
+## Relationships
+
+- Each `Hotel` can have multiple `Room`s (one-to-many relationship).
+- Each `Room` belongs to one `Hotel`.
+
+## Relationships
+
+- Each `Hotel` can have multiple `Room`s (one-to-many relationship).
+- Each `Room` belongs to one `Hotel`.
+
+## Usage
+
+To use this schema:
+
+1. Ensure you have Prisma installed in your project.
+2. Copy the schema into your `schema.prisma` file.
+3. Run `prisma generate` to generate the Prisma Client based on this schema.
+4. Use the generated Prisma Client in your application to interact with your database.
+
+## Database Setup
+
+This schema is database-agnostic. You can use it with any database supported by Prisma, including PostgreSQL, MySQL, SQLite, and SQL Server. Make sure to configure your database connection in the Prisma schema file.
+
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
